@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useCallback} from 'react';
 import TextField from '@mui/material/TextField';
 import NutrientsFinder from './components/NutrientsFinder';
 import { InputAdornment } from "@mui/material";
@@ -37,7 +37,7 @@ function App() {
     setSelectedFood(null)
   }
 
-  const findFood = async () => {
+  const findFood = useCallback(async () => {
     const response = await getSearchFood(inputFood, nutrientId) as AxiosResponse<any, any>;
 
     const {count, next, previous, results} = response.data;
@@ -46,7 +46,7 @@ function App() {
     setFoodCount(count);
     setNextPage(next);
     setPreviousPage(previous)
-  }
+  }, [inputFood, nutrientId])
 
   const changePage = async (page: string) => {
     const response = await getChangePage(page) as AxiosResponse<any, any>;
@@ -61,11 +61,11 @@ function App() {
 
   useEffect(() => {
     findFood();
-  }, [inputFood, nutrientId])
+  }, [inputFood, nutrientId, findFood])
 
   useEffect(() => {
     findFood();
-  }, [])
+  }, [findFood])
 
   return (
     <div className='flex flex-col w-full h-full justify-between items-center'>
