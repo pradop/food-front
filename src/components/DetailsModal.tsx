@@ -16,7 +16,7 @@ const DetailsModal = ({onClose, food, nutrients}: DetailModalProps) => {
         onClick={() => onClose()}
       ></div>
       <div
-        className="absolute md:top-20 top-5 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white z-10"
+        className="absolute md:top-20 top-5 xs-custom:top-5 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white z-10"
       >
         <div className="mt-3 text-center">
           <h3 className="text-lg leading-6 font-bold text-gray-900">Food Details</h3>
@@ -25,7 +25,7 @@ const DetailsModal = ({onClose, food, nutrients}: DetailModalProps) => {
               {food.description}
             </p>
           </div>
-          <div className="mt-2 px-1 py-3 max-h-[70vh] md:max-h-[50vh] lg:max-h-[60vh] flex flex-col overflow-auto">
+          <div className="mt-2 px-1 py-3 max-h-[70vh] md:max-h-[50vh] lg:max-h-[60vh] xs-custom:max-h-[35vh] flex flex-col overflow-auto">
             <div className='flex w-full justify-between items-center'>
               <p className="text-md font-bold text-gray-500">Nutrient</p>
               <p className="text-md font-bold text-gray-500">Amount/Unit</p>

@@ -8,6 +8,9 @@ module.exports = {
       colors: {
         'dark-blue-custom': '#003780',
         'light-blue-custom': '#20A7E4',
+      },
+      screens: {
+        'xs-custom': { 'raw': '(max-height: 400px)' },
       }
     },
   },
