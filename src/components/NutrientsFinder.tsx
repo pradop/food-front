@@ -5,7 +5,6 @@ import { CircularProgress } from "@mui/material";
 import {getNutrients} from '../services/api';
 import {Nutrient} from '../interfaces';
 
-
 interface NutrientsFinderProps {
   onChange: Function
 }
@@ -13,9 +12,7 @@ interface NutrientsFinderProps {
 const NutrientsFinder = ({onChange}: NutrientsFinderProps) => {
   const [nutrients, setNutrients] = useState<Nutrient[] | []>([]);
   const [inputValue, setInputValue] = useState('');
-  const [value, setValue] = useState<Nutrient | null>(null);
   const [loading, setLoading] = useState(false);
-
 
   const apiCall = async (search: string = '') => {
     const response = await getNutrients(search);
@@ -28,12 +25,11 @@ const NutrientsFinder = ({onChange}: NutrientsFinderProps) => {
 
   return (
     <Autocomplete
-    className="md:w-56 w-full"
-    onChange={(event: any, newValue: Nutrient | null) => {
-      setValue(newValue);
-      onChange(newValue ? (newValue as Nutrient).nutrient_id : undefined)
+    multiple={true}
+    className="md:w-96 w-full"
+    onChange={(event: any, newValue: Nutrient[] | undefined) => {
+      onChange(newValue)
     }}
-    value={value}
     inputValue={inputValue}
     loading={loading}
     onInputChange={async (event, newInputValue) => {

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Nutrient } from '../interfaces';
 
 const axiosInstance = axios.create();
 axiosInstance.defaults.baseURL = process.env.REACT_APP_API_URL;
@@ -12,14 +13,15 @@ export const getNutrients = async (search: string) => {
   })
 }
 
-export const getSearchFood = async (search?: string, nutrientId?: number) => {
-  const params: any = {
-    search: search?.trim() !== '' ? search : '',
+export const getSearchFood = async (search?: string, nutrientIds?: Nutrient[]) => {
+  let params = new URLSearchParams();
+
+  for (let i = 0; nutrientIds && i < nutrientIds.length; i++) {
+    const nutrient = nutrientIds[i];
+    params.append('nutrient_ids', nutrient.nutrient_id.toString());
   }
 
-  if (nutrientId) {
-    params.nutrient_id = nutrientId ? nutrientId : ''
-  }
+  params.append('search', search?.trim() !== '' ? search as string : '');
 
   return await axiosInstance.get('food/', {
     params: params

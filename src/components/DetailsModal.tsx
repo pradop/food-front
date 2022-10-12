@@ -25,7 +25,7 @@ const DetailsModal = ({onClose, food, nutrients}: DetailModalProps) => {
               {food.description}
             </p>
           </div>
-          <div className="mt-2 px-1 py-3">
+          <div className="mt-2 px-1 py-3 max-h-[70vh] md:max-h-[50vh] lg:max-h-[60vh] flex flex-col overflow-auto">
             <div className='flex w-full justify-between items-center'>
               <p className="text-md font-bold text-gray-500">Nutrient</p>
               <p className="text-md font-bold text-gray-500">Amount/Unit</p>
@@ -33,7 +33,7 @@ const DetailsModal = ({onClose, food, nutrients}: DetailModalProps) => {
             {nutrients.map((elem, i) => (
               <div className='flex w-full justify-between items-center' key={i}>
                 <p className="text-sm text-gray-500 italic">{elem.nutrient}</p>
-                <p className="text-sm text-gray-500 italic">{elem.amount} {elem.unit_name}</p>
+                <p className="text-sm text-gray-500 italic">{elem.amount} <span className='font-bold text-sm text-gray-500 italic'>{elem.unit_name}</span></p>
               </div>
             ))}
           </div>
